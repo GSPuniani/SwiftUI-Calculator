@@ -22,46 +22,46 @@ struct ContentView: View {
                         .foregroundColor(.white)
                 }
                 HStack(spacing: 8) {
-                    self.makeButton(title: "C", color: Color(white: 0.23, opacity: 1.0))
-                    self.makeButton(title: "+/-", color: Color(white: 0.23, opacity: 1.0))
-                    self.makeButton(title: "%", color: Color(white: 0.23, opacity: 1.0))
-                    self.makeButton(title: "÷", color: .orange)
+                    self.makeButton(key: .allClear, color: Color(white: 0.23, opacity: 1.0))
+                    self.makeButton(key: .plusMinus, color: Color(white: 0.23, opacity: 1.0))
+                    self.makeButton(key: .percent, color: Color(white: 0.23, opacity: 1.0))
+                    self.makeButton(key: .divide, color: .orange)
                 }
                 
                 HStack(spacing: 8) {
-                    self.makeButton(title: "7")
-                    self.makeButton(title: "8")
-                    self.makeButton(title: "9")
-                    self.makeButton(title: "⨉", color: .orange)
+                    self.makeButton(key: .seven)
+                    self.makeButton(key: .eight)
+                    self.makeButton(key: .nine)
+                    self.makeButton(key: .multiply, color: .orange)
                 }
                 
                 HStack(spacing: 8) {
-                    self.makeButton(title: "6")
-                    self.makeButton(title: "5")
-                    self.makeButton(title: "4")
-                    self.makeButton(title: "−", color: .orange)
+                    self.makeButton(key: .six)
+                    self.makeButton(key: .five)
+                    self.makeButton(key: .four)
+                    self.makeButton(key: .minus, color: .orange)
                 }
                 
                 HStack(spacing: 8) {
-                    self.makeButton(title: "3")
-                    self.makeButton(title: "2")
-                    self.makeButton(title: "1")
-                    self.makeButton(title: "+", color: .orange)
+                    self.makeButton(key: .three)
+                    self.makeButton(key: .two)
+                    self.makeButton(key: .one)
+                    self.makeButton(key: .plus, color: .orange)
                 }
                 
                 HStack(spacing: 8) {
-                    self.makeButton(title: "0")
-                    self.makeButton(title: ".")
-                    self.makeButton(title: "=", width: 195, color: .orange)
+                    self.makeButton(key: .zero)
+                    self.makeButton(key: .dot)
+                    self.makeButton(key: .equal, width: 195, color: .orange)
                 }
             }
             Spacer()
         }
     }
     
-    func makeButton(title: String = "0", width: CGFloat = 95, height: CGFloat = 95, color: Color = Color(white: 0.5)) -> some View {
+    func makeButton(key: CalculatorKey = .zero, width: CGFloat = 95, height: CGFloat = 95, color: Color = Color(white: 0.5)) -> some View {
         return AnyView(Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-            Text(title)
+            Text(key.rawValue)
                 .frame(width: width, height: height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(color)
                 .cornerRadius(height / 2)
