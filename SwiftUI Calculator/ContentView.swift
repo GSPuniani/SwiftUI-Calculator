@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var env: GlobalState
     var body: some View {
         ZStack {
             Color.black
@@ -15,7 +16,7 @@ struct ContentView: View {
             
             VStack(spacing: 8) {
                 HStack {
-                    Text("3.14")
+                    Text(env.display)
                         .font(.system(size: 50))
                         .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: 50, maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 30, maxHeight: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .bottomTrailing)
                         .padding()
@@ -60,7 +61,9 @@ struct ContentView: View {
     }
     
     func makeButton(key: CalculatorKey = .zero, width: CGFloat = 95, height: CGFloat = 95, color: Color = Color(white: 0.5)) -> some View {
-        return AnyView(Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
+        return AnyView(Button(action: {
+            env.keyPressed(key: key)
+        }, label: {
             Text(key.rawValue)
                 .frame(width: width, height: height, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .background(color)
@@ -73,6 +76,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(GlobalState())
     }
 }
