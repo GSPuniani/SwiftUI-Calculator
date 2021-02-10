@@ -45,6 +45,10 @@ class GlobalState: ObservableObject {
                 }
             }
             
+        case .equal:
+            calculate()
+            beginInput = true
+            
         case .dot:
             if display.contains(CalculatorKey.dot.rawValue) {
                 break
@@ -60,11 +64,14 @@ class GlobalState: ObservableObject {
             else {
                 display = CalculatorKey.minus.rawValue + display
             }
+        
+        case .percent:
+            var displayAsDouble: Double = Double(display) ?? 0.0
+            displayAsDouble *= 0.01
+            display = String(displayAsDouble)
             
         case .allClear, .clear:
             display = CalculatorKey.zero.rawValue
-        default:
-            break
         }
     }
     
@@ -87,8 +94,12 @@ class GlobalState: ObservableObject {
         }
         
         storedValue = answer
+//        If `answer` is mathematically equivalent to an integer, then convert to integer
+        if answer / Double(answer) == 1.0 {
+            let stringAnswer: String = String(Int(answer))
+            display = stringAnswer
+        }
         display = String(answer)
-        
         
     }
 }
