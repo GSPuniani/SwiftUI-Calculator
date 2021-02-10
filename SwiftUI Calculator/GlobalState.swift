@@ -72,6 +72,8 @@ class GlobalState: ObservableObject {
             
         case .allClear, .clear:
             display = CalculatorKey.zero.rawValue
+            storedValue = nil
+            beginInput = true
         }
     }
     
@@ -95,10 +97,10 @@ class GlobalState: ObservableObject {
         
         storedValue = answer
 //        If `answer` is mathematically equivalent to an integer, then convert to integer
-        if answer / Double(answer) == 1.0 {
-            let stringAnswer: String = String(Int(answer))
-            display = stringAnswer
-        }
+//        if answer == floor(answer) {
+//            let stringAnswer: String = String(Int(answer))
+//            display = stringAnswer
+//        }
         display = String(answer)
         
     }
