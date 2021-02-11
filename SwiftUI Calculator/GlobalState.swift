@@ -68,6 +68,7 @@ class GlobalState: ObservableObject {
         case .percent:
             var displayAsDouble: Double = Double(display) ?? 0.0
             displayAsDouble *= 0.01
+            storedValue = displayAsDouble
             display = String(displayAsDouble)
             
         case .allClear, .clear:
